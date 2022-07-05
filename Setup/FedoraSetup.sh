@@ -5,15 +5,15 @@
 #
 #		Programmer: Chevelle
 #		Date created: 3-2-2022
-#		Date Updated:
+#		Date Updated: 7-5-2022
 #
 #		Update Notes:
 #
-#		Tested: With Fedora 35 = Worked
+#		Tested: With Fedora 36 = Worked
 #
 #		Note:
 #
-#		Purpose: Faster way to install/configure new linux-mint
+#		Purpose: Faster way to install/configure new Fedora Linux
 #
 #		Description: install Software
 #
