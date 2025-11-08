@@ -1,3 +1,4 @@
+sudo sh -c 'echo -e "[mwt-packages]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/shiftkey-desktop/rpm\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/shiftkey-desktop/gpgkey" > /etc/yum.repos.d/mwt-packages.repo'
 #!/bin/bash
 
 ####################################################################################
@@ -5,11 +6,11 @@
 #
 #		Programmer: Chevelle
 #		Date created: 3-2-2022
-#		Date Updated: 7-5-2022
+#		Date Updated: 11-8-2025
 #
-#		Update Notes:
+#		Update Notes: dnf5 updates
 #
-#		Tested: With Fedora 36 = Worked
+#		Tested: With Fedora 43 = Worked
 #
 #		Note:
 #
@@ -45,13 +46,13 @@ do
 	echo "3 = Needed Software..."
 	echo "4 = Sublime Text..."
 	echo "5 = Media Plugins..."
-	echo "6 = Laptop Battery Optimizer..."
+	#echo "6 = Laptop Battery Optimizer..."
 	echo "7 = Microsoft Fonts..."
-	echo "8 = Atom Text Editor..."
-	echo "9 = BalenaEtcher..."
+	#echo "8 = Atom Text Editor..."
+	#echo "9 = BalenaEtcher..."
 	echo "10 = Clean up..."
-	echo "11 = Firewalld Gui and Cockpit..."
-	echo "12 = LibreWolf..."
+	#echo "11 = Firewalld Gui and Cockpit..."
+	#echo "12 = LibreWolf..."
 	echo "13 = EXIT..."
 	read b
 
@@ -61,11 +62,9 @@ do
 				##### Brave-Browser #####
 
 				title name "Brave-Browser"
-				sudo dnf install dnf-plugins-core
+				sudo dnf install dnf-plugins-core curl
 				echo
-				sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-				echo
-				sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+				curl -fsS https://dl.brave.com/install.sh | sh
 				echo
 				sudo dnf install brave-browser
 				echo
@@ -95,7 +94,7 @@ do
 				##### Software #####
 
 				title_name "Install needed Software"
-				sudo dnf install clamav clamtk terminator git vlc k4dirstat bleachbit clementine python3-pip bpytop gnome-software asunder
+				sudo dnf install clamav clamtk terminator git vlc mpv k3b bleachbit clementine python3-pip pytop gnome-firmware bleachbit btop yakuake catfish dosbox wine winetricks 
 				echo
 				echo "Hit Enter to continue"
 				read c
@@ -110,7 +109,7 @@ do
 				sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
 				echo
 				echo "Add Stable Repository"
-				sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+				sudo dnf config-manager addrepo --from-repofile=https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
 				echo
 				echo " Installing Sublime Text"
 				sudo dnf install sublime-text
@@ -124,6 +123,8 @@ do
 
 				title_name "Install Media Plugins"
 				sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+				echo
+				sudo dnf install libva-devel libdrm-devel
 				echo
 				sudo dnf install lame\* --exclude=lame-devel
 				echo
