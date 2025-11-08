@@ -96,6 +96,7 @@ do
 				title_name "Install needed Software"
 				sudo dnf install clamav clamtk terminator git vlc mpv k3b bleachbit clementine python3-pip pytop gnome-firmware bleachbit btop yakuake catfish dosbox wine winetricks 
 				echo
+				flatpak install asunder ignition rustdesk freefilesync localsend
 				echo "Hit Enter to continue"
 				read c
 
